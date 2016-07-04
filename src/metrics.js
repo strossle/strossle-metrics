@@ -1,8 +1,8 @@
 const { InvalidFormatterError, InvalidOutputError } = require('./error.js');
-const Formatter = require('./formatter.js');
-const Output = require('./output.js');
-const Stdout = require('./stdout-output.js');
-const InfluxDBLineProtocol = require('./influxdb-line-protocol-formatter.js');
+const Formatter = require('./formatter/formatter.js');
+const Output = require('./output/output.js');
+const Stdout = require('./output/stdout-output.js');
+const InfluxDBLineProtocol = require('./formatter/influxdb-line-protocol-formatter.js');
 
 class Metrics {
     constructor(options = { formatter: new InfluxDBLineProtocol(), output: new Stdout() }) {

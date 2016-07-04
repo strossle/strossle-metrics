@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('./error.js');
+const { NotImplementedError } = require('../error.js');
 
 class Output {
     send() {
