@@ -6,7 +6,7 @@ const BufferedTcp = require('./buffered-tcp-output.js');
 const InfluxDBLineProtocol = require('./influxdb-line-protocol-formatter.js');
 
 //const reporter = new Metrics();
-//const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new Tcp('localhost', 12345) });
+//const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new Metrics.Output.Tcp('localhost', 12345) });
 //const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new BufferedTcp('localhost', 12345) });
 //const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new Udp('udp4://localhost:12345') });
 const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new BufferedUdp('udp4://localhost:12345') });

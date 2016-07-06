@@ -1,5 +1,5 @@
 {
-  "name": "metrics",
+  "name": "strossle-metrics",
   "version": "0.0.1",
   "description": "A metrics logging framework",
   "main": "src/index.js",
