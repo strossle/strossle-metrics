@@ -5,6 +5,7 @@ const BufferedTcp = require('./output/buffered-tcp-output.js');
 const Udp = require('./output/udp-output.js');
 const BufferedUdp = require('./output/buffered-udp-output.js');
 const InfluxdbLineProtocol = require('./formatter/influxdb-line-protocol-formatter.js');
+const JSONFormatter = require('./formatter/json-formatter.js');
 
 Metrics.Output = {
     Stdout,
@@ -15,6 +16,7 @@ Metrics.Output = {
 };
 Metrics.Formatter = {
     InfluxdbLineProtocol,
+    JSON:JSONFormatter,
 };
 
 module.exports = Metrics;
