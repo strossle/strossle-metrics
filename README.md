@@ -9,3 +9,9 @@ const metrics = new Metrics({ formatter: new Metrics.Formatter.InfluxdbLineProto
 metrics.send('measurement_name', { a: 1, b: true, c: 'Hello' });
 metrics.send('measurement_2', { a: 10.0 }, { tags: { host: 'aaaaa' }, timestamp: Date.now() * 1e6 });
 ```
+# ID Versions
+
+| Version     | Description                 |
+| ----------- | --------------------------- |
+| 0.0.2 | Add support for JSON formatter |
+| 0.0.1 | Support for InfluxdbLineProtocol and TCP/UDP output |
