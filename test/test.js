@@ -29,7 +29,7 @@ function send(i) {
 }
 
 let i = 0;
-const iterations = 10000;
+const iterations = parseInt(process.env.ITERATIONS || 10, 10);
 const start = process.hrtime();
 let n = iterations % 8;
 do {
