@@ -13,5 +13,6 @@ metrics.send('measurement_2', { a: 10.0 }, { tags: { host: 'aaaaa' }, timestamp:
 
 | Version     | Description                 |
 | ----------- | --------------------------- |
+| 0.1.0 | Add basic plugin support, for Rancher, Node and Npm information |
 | 0.0.2 | Add support for JSON formatter |
 | 0.0.1 | Support for InfluxdbLineProtocol and TCP/UDP output |
