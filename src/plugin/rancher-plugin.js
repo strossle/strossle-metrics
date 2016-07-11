@@ -26,10 +26,8 @@ class Rancher extends Plugin {
 
         this.data = {};
 
-        /*
         const numberOfProps = this.properties.length;
         let currentProp = 0;
-        */
 
         this.properties.forEach((prop) => {
             fetch(`${RANCHER_METADATA}/${RANCHER_API_VERSION}/self/${prop}/name`)
