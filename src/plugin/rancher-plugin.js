@@ -28,6 +28,23 @@ class Rancher extends Plugin {
 
         this.data = {};
 
+
+        fetch(`${RANCHER_METADATA}/${RANCHER_API_VERSION}/self/stack/environment_name`)
+            .then((response) => {
+                if (response.ok) {
+                    return response.text();
+                }
+
+                log.error(`Rancher metadata service returned ${response.status}. Are you running in Rancher?`);
+                return Promise.resolve(null);
+            })
+            .then((body) => {
+                if (body) {
+                    log.info(`Rancher environment ${body}`);
+                    this.data['environment'] = body.toLowerCase();
+                }
+            })
+
         const numberOfProps = this.properties.length;
         let currentProp = 0;
 
