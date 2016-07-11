@@ -10,8 +10,13 @@ class InvalidOutputError extends Error {
 
 }
 
+class InvalidPluginError extends Error {
+
+}
+
 module.exports = {
     NotImplementedError,
     InvalidFormatterError,
     InvalidOutputError,
+    InvalidPluginError,
 };
