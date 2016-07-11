@@ -30,7 +30,8 @@ class Rancher extends Plugin {
         let currentProp = 0;
 
         this.properties.forEach((prop) => {
-            fetch(`${RANCHER_METADATA}/${RANCHER_API_VERSION}/self/${prop}/name`)
+            const url = `${RANCHER_METADATA}/${RANCHER_API_VERSION}/self/${prop}/name`;
+            fetch(url)
                 .then((response) => {
                     if (response.ok) {
                         return response.text();
@@ -49,10 +50,6 @@ class Rancher extends Plugin {
                     }
                 });
         });
-    }
-
-    isStatic() {
-        return true;
     }
 
     getData() {

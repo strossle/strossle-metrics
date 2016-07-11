@@ -12,10 +12,6 @@ class Npm extends Plugin {
         this.keyName = keyName;
     }
 
-    isStatic() {
-        return true;
-    }
-
     getData() {
         return { [this.keyName]: this.version };
     }
