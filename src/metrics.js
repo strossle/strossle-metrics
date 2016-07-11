@@ -8,6 +8,7 @@ const Output = require('./output/output.js');
 const Plugin = require('./plugin/plugin.js');
 const Stdout = require('./output/stdout-output.js');
 const InfluxDBLineProtocol = require('./formatter/influxdb-line-protocol-formatter.js');
+const log = require('./log.js');
 
 class Metrics {
     constructor(options = { formatter: new InfluxDBLineProtocol(), output: new Stdout() }) {
@@ -48,6 +49,7 @@ class Metrics {
 
     setOutput(output) {
         if (!output instanceof Output) {
+            log.error('output must be an instance of Output');
             throw new InvalidOutputError('output must be an instance of Output');
         }
 
@@ -58,6 +60,7 @@ class Metrics {
 
     setFormatter(formatter) {
         if (!formatter instanceof Formatter) {
+            log.error('formatter must be an instance of Formatter');
             throw new InvalidFormatterError('formatter must be an instance of Formatter');
         }
 
@@ -74,6 +77,7 @@ class Metrics {
                 this.addPlugin(p);
             });
         } else {
+            log.error('plugin must be an instance of Plugin or an array containing instances of Plugin');
             throw new InvalidPluginError('p must be an instance of Plugin');
         }
 
