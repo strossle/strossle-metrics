@@ -35,6 +35,7 @@ to add stack, service, container and host information to metrics.
 
 | Version     | Description                 |
 | ----------- | --------------------------- |
+| 0.1.3 | Get envrionment from rancher metadata service |
 | 0.1.2 | Add basic logging |
 | 0.1.1 | Fix timestamps for logstash json, update readme |
 | 0.1.0 | Add basic plugin support, for Rancher, Node and Npm information |
