@@ -1,22 +1,65 @@
-const Metrics = require('./metrics.js');
-const Udp = require('./udp-output.js');
-const BufferedUdp = require('./buffered-udp-output.js');
-const Tcp = require('./tcp-output.js');
-const BufferedTcp = require('./buffered-tcp-output.js');
-const InfluxDBLineProtocol = require('./influxdb-line-protocol-formatter.js');
+const Metrics = require('../src/index.js');
 
-//const reporter = new Metrics();
-//const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new Metrics.Output.Tcp('localhost', 12345) });
-//const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new BufferedTcp('localhost', 12345) });
-//const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new Udp('udp4://localhost:12345') });
-const reporter = new Metrics({ formatter: new InfluxDBLineProtocol(), output: new BufferedUdp('udp4://localhost:12345') });
+const reporter = new Metrics()
+    .setFormatter(new Metrics.Formatter.LogstashJSON())
+    .setOutput(new Metrics.Output.Stdout())
+    .addPlugin(new Metrics.Plugin.Rancher())
+    .addPlugin(new Metrics.Plugin.Npm())
+    .addPlugin(new Metrics.Plugin.Node());
+
+// This is a primitive benchmark
+
+function send(i) {
+    reporter.send(
+        'test_metric',
+        {
+            first: i,
+            second: Math.random() * 10,
+            bool: (i & 1) === 1,
+            text: 'Hello world!',
+        },
+        {
+            tags: {
+                some: 'text here',
+                number: i,
+            },
+            timestamp: Date.now(),
+        }
+    );
+}
 
 let i = 0;
-const iterations = 100000;
+const iterations = 10000;
 const start = process.hrtime();
-for (;i < iterations; i += 1) {
-    reporter.send('test_metric', { first: i, second: 2.5, bool: true, text: 'Hello "world!' }, { tags: { some: "text here", number: 1 }, timestamp: Date.now() * 1e6 });
-}
+let n = iterations % 8;
+do {
+    send(i);
+    ++i;
+    --n;
+} while (n > 0);
+// Floor here because js has no integer division :/
+n = Math.floor(iterations / 8);
+// Unroll loop for speeeeed
+do {
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    send(i);
+    ++i;
+    --n;
+} while (n > 0);
+
 const elapsed = process.hrtime(start);
 const nsElapsed = elapsed[0] * 1e9 + elapsed[1];
 const nsElapsedPerCall = nsElapsed / iterations;
