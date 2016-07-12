@@ -51,6 +51,7 @@ to add stack, service, container and host information to metrics.
 
 | Version     | Description                 |
 | ----------- | --------------------------- |
+| 0.2.1 | Remove unused dependency |
 | 0.2.0 | Rename `Npm` plugin to `ApplicationVersion` |
 | 0.1.4 | Make it easier to configure Rancher metadata. Use `request` instead of `fetch` since fetch caused issues in some test frameworks because of global variables |
 | 0.1.3 | Get envrionment from rancher metadata service |
