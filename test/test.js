@@ -1,11 +1,20 @@
 const Metrics = require('../src/index.js');
+const { LogstashJSON } = Metrics.Formatter;
+const { Stdout } = Metrics.Output;
+const { Node, Npm, Rancher } = Metrics.Plugin;
 
 const reporter = new Metrics()
-    .setFormatter(new Metrics.Formatter.LogstashJSON())
-    .setOutput(new Metrics.Output.Stdout())
-    .addPlugin(new Metrics.Plugin.Rancher())
-    .addPlugin(new Metrics.Plugin.Npm())
-    .addPlugin(new Metrics.Plugin.Node());
+    .setFormatter(new LogstashJSON())
+    .setOutput(new Stdout())
+    .addPlugin(new Rancher({
+        metadata: [
+            Rancher.CONTAINER,
+            Rancher.SERVICE,
+            Rancher.STACK,
+        ],
+    }))
+    .addPlugin(new Npm())
+    .addPlugin(new Node());
 
 // This is a primitive benchmark
 
