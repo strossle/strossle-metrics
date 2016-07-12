@@ -8,3 +8,4 @@ class JSONFormatter extends Formatter {
 }
 
 module.exports = JSONFormatter;
+

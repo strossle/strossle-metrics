@@ -77,7 +77,10 @@ class Metrics {
                 this.addPlugin(p);
             });
         } else {
-            log.error('plugin must be an instance of Plugin or an array containing instances of Plugin');
+            log.error(
+                'plugin must be an instance of Plugin or an array containing ' +
+                'instances of Plugin'
+            );
             throw new InvalidPluginError('p must be an instance of Plugin');
         }
 
