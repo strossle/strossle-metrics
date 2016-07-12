@@ -2,8 +2,8 @@ const Plugin = require('./plugin.js');
 const path = require('path');
 const pkg = require(path.join(process.cwd(), 'package.json'));
 
-class Npm extends Plugin {
-    constructor(options = { keyName: 'npm_version' }) {
+class ApplicationVersion extends Plugin {
+    constructor(options = { keyName: 'application_version' }) {
         super();
 
         const { keyName } = options;
@@ -17,5 +17,5 @@ class Npm extends Plugin {
     }
 }
 
-module.exports = Npm;
+module.exports = ApplicationVersion;
 
