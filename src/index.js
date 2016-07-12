@@ -1,5 +1,3 @@
-require('isomorphic-fetch');
-
 const Metrics = require('./metrics.js');
 
 /* Formatters */
