@@ -35,6 +35,7 @@ to add stack, service, container and host information to metrics.
 
 | Version     | Description                 |
 | ----------- | --------------------------- |
+| 0.1.4 | Make it easier to configure Rancher metadata. Use `request` instead of `fetch` since fetch caused issues in some test frameworks because of global variables |
 | 0.1.3 | Get envrionment from rancher metadata service |
 | 0.1.2 | Add basic logging |
 | 0.1.1 | Fix timestamps for logstash json, update readme |
